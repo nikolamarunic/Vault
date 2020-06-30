@@ -1,8 +1,8 @@
 from django.contrib import admin
-from .models import Vault # add this
+from .models import Item # add this
 
-class VaultAdmin(admin.ModelAdmin):
+class ItemAdmin(admin.ModelAdmin):
     list_display = ('name', 'description')
 
 # Register your models here.
-admin.site.register(Vault, VaultAdmin)
+admin.site.register(Item, ItemAdmin)
