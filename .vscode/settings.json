@@ -1,3 +1,5 @@
 {
-    "python.pythonPath": "/Users/nikomarunic/.local/share/virtualenvs/vault-LyxvPe2Y/bin/python"
+    "python.pythonPath": "/Users/nikomarunic/.local/share/virtualenvs/vault-LyxvPe2Y/bin/python",
+    "python.linting.pylintEnabled": true,
+    "python.linting.enabled": true
 }
