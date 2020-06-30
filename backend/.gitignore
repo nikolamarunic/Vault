@@ -1,0 +1,2 @@
+# Django secrets
+/backend/secret_settings.py
