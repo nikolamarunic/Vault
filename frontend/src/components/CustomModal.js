@@ -14,7 +14,7 @@ export default class CustomModal extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            activeItem: this.props.activeItem
+            activeItem: this.props.activeItem,
         };
 
     }
@@ -27,11 +27,13 @@ export default class CustomModal extends Component {
         this.setState({ activeItem });
     };
     render() {
+
         const { toggle, onSave } = this.props;
+
         return (
             // <Modal show={true} toggle={toggle}> //Error when the toggle is present
-            <Modal show={true}>
-                <Modal.Header>
+            <Modal show={true} onHide = {this.props.onHide}>
+                <Modal.Header closeButton >
                     <Modal.Title> Vault Item </Modal.Title>
                 </Modal.Header>
                 <ModalBody>

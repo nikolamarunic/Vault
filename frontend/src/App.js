@@ -42,7 +42,7 @@ class App extends Component {
         .then(res => this.refreshList());
       return;
     } //If doesn't exist want to CREATE
-    axios 
+    axios
       .post("http://localhost:8000/api/items/", item)
       .then(res => this.refreshList());
   };
@@ -63,35 +63,11 @@ class App extends Component {
     this.setState({ activeItem: item, modal: !this.state.modal });
   };
 
-  // displayCompleted = status => {
-  //   if (status) {
-  //     return this.setState({ viewCompleted: true });
-  //   }
-  //   return this.setState({ viewCompleted: false });
-  // };
-  // renderTabList = () => {
-  //   return (
-  //     <div className="my-5 tab-list">
-  //       {/* <span
-  //             onClick={() => this.displayCompleted(true)}
-  //             className={this.state.viewCompleted ? "active" : ""}
-  //           >
-  //             complete
-  //           </span> */}
-  //       <span
-  //         onClick={() => this.displayCompleted(false)}
-  //         className={this.state.viewCompleted ? "" : "active"}
-  //       >
-  //         Incomplete
-  //           </span>
-  //     </div>
-  //   );
-  // };
+  handleHide = () => {
+    this.setState({ modal: false });
+  }
+
   renderItems = () => {
-    // const { viewCompleted } = this.state;
-    // const newItems = this.state.vaultItems.filter(
-    //   item => item.completed === viewCompleted
-    // );
     const newItems = this.state.vaultItems
 
     return newItems.map(item => (
@@ -146,6 +122,7 @@ class App extends Component {
             activeItem={this.state.activeItem}
             toggle={this.toggle}
             onSave={this.handleSubmit}
+            onHide={this.handleHide}
           />
         ) : null}
       </main>
