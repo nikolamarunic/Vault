@@ -1,28 +1,30 @@
 import React, { Component } from "react";
 import CustomModal from "./components/CustomModal";
+import axios from "axios";
 
-const items = [
-  {
-    id: 1,
-    title: "Go to Market",
-    description: "Buy ingredients to prepare dinner",
-  },
-  {
-    id: 2,
-    title: "Study",
-    description: "Read Algebra and History textbook for upcoming test",
-  },
-  {
-    id: 3,
-    title: "Sally's books",
-    description: "Go to library to rent sally's books",
-  },
-  {
-    id: 4,
-    title: "Article",
-    description: "Write article on how to use django with react",
-  }
-];
+
+// const items = [
+//   {
+//     id: 1,
+//     title: "Go to Market",
+//     description: "Buy ingredients to prepare dinner",
+//   },
+//   {
+//     id: 2,
+//     title: "Study",
+//     description: "Read Algebra and History textbook for upcoming test",
+//   },
+//   {
+//     id: 3,
+//     title: "Sally's books",
+//     description: "Go to library to rent sally's books",
+//   },
+//   {
+//     id: 4,
+//     title: "Article",
+//     description: "Write article on how to use django with react",
+//   }
+// ];
 class App extends Component {
   constructor(props) {
     super(props);
@@ -30,34 +32,57 @@ class App extends Component {
       modal: false,
       // viewCompleted: false,
       activeItem: {
-        title: "",
+        name: "",
         description: "",
         // completed: false
       },
-      vaultItems: items
+      vaultItems: []
     };
     this.toggle = this.toggle.bind(this);
   }
+
+  componentDidMount() {
+    console.log('mounted');
+    this.refreshList();
+  };
+
+  refreshList = () => {
+    axios
+      .get("http://localhost:8000/api/items/")
+      .then(res => this.setState({ vaultItems: res.data }))
+      .catch(err => console.log(err));
+  }
+
   toggle = () => {
     this.setState({ modal: !this.state.modal });
   };
 
   handleSubmit = item => {
     this.toggle();
-    alert("save" + JSON.stringify(item));
+    if (item.id) { //If it is already existing want to UPDATE
+      axios
+        .put(`http://localhost:8000/api/items/${item.id}/`, item)
+        .then(res => this.refreshList());
+      return;
+    } //If doesn't exist want to CREATE
+    axios 
+      .post("http://localhost:8000/api/items/", item)
+      .then(res => this.refreshList());
   };
 
   handleDelete = item => {
-    alert("delete" + JSON.stringify(item));
+    // alert("delete" + JSON.stringify(item));
+    axios
+      .delete(`http://localhost:8000/api/items/${item.id}`)
+      .then(res => this.refreshList());
   };
+
   createItem = () => {
-    const item = { title: "", description: "" };
+    const item = { name: "", description: "" };
     this.setState({ activeItem: item, modal: !this.state.modal });
   };
-  editItem = item => {
-    console.log(item);
-    console.log(this.state.modal);
 
+  editItem = item => {
     this.setState({ activeItem: item, modal: !this.state.modal });
   };
 
@@ -99,9 +124,9 @@ class App extends Component {
       >
         <span
           className={`todo-title mr-2`}
-          title={item.description}
+          val={item.description}
         >
-          {item.title}
+          {item.name}
         </span>
         <span>
           <button
@@ -123,7 +148,7 @@ class App extends Component {
   render() {
     return (
       <main className="content">
-        <h1 className="text-white text-uppercase text-center my-4">Todo app</h1>
+        <h1 className="text-white text-uppercase text-center my-4">Vault app</h1>
         <div className="row ">
           <div className="col-md-6 col-sm-10 mx-auto p-0">
             <div className="card p-3">

@@ -7,6 +7,7 @@ import {
     ModalFooter,
     Form,
     FormGroup,
+
 } from 'react-bootstrap';
 
 export default class CustomModal extends Component {
@@ -19,9 +20,9 @@ export default class CustomModal extends Component {
     }
     handleChange = e => {
         let { name, value } = e.target;
-        if (e.target.type === "checkbox") {
-            value = e.target.checked;
-        }
+        // if (e.target.type === "checkbox") {
+        //     value = e.target.checked;
+        // }
         const activeItem = { ...this.state.activeItem, [name]: value };
         this.setState({ activeItem });
     };
@@ -36,11 +37,11 @@ export default class CustomModal extends Component {
                 <ModalBody>
                     <Form>
                         <FormGroup>
-                            <Form.Label htmlFor="title">Title</Form.Label>
+                            <Form.Label htmlFor="title">Name</Form.Label>
                             <Form.Control
                                 type="text"
-                                name="title"
-                                value={this.state.activeItem.title}
+                                name="name"
+                                value={this.state.activeItem.name}
                                 onChange={this.handleChange}
                                 placeholder="Enter item name"
                             />
