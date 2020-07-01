@@ -7,8 +7,6 @@ import {
     ModalFooter,
     Form,
     FormGroup,
-    // Input,
-    // Label
 } from 'react-bootstrap';
 
 export default class CustomModal extends Component {
@@ -38,8 +36,8 @@ export default class CustomModal extends Component {
                 <ModalBody>
                     <Form>
                         <FormGroup>
-                            <label htmlFor="title">Title</label>
-                            <input
+                            <Form.Label htmlFor="title">Title</Form.Label>
+                            <Form.Control
                                 type="text"
                                 name="title"
                                 value={this.state.activeItem.title}
@@ -48,8 +46,8 @@ export default class CustomModal extends Component {
                             />
                         </FormGroup>
                         <FormGroup>
-                            <label htmlFor="description">Description</label>
-                            <input
+                            <Form.Label htmlFor="description">Description</Form.Label>
+                            <Form.Control
                                 type="text"
                                 name="description"
                                 value={this.state.activeItem.description}
@@ -57,17 +55,6 @@ export default class CustomModal extends Component {
                                 placeholder="Enter item description"
                             />
                         </FormGroup>
-                        {/* <FormGroup check>
-                            <Label for="completed">
-                                <Input
-                                    type="checkbox"
-                                    name="completed"
-                                    checked={this.state.activeItem.completed}
-                                    onChange={this.handleChange}
-                                />
-                            Completed
-                            </Label>
-                        </FormGroup> */}
                     </Form>
                 </ModalBody>
                 <ModalFooter>
