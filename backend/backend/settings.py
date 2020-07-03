@@ -105,7 +105,7 @@ REST_FRAMEWORK = {
 
 #JWT Auth
 JWT_AUTH = {
-    'JWT_RESPONSE_PAYLOAD_HANDLER': 'mysite.utils.my_jwt_response_handler'
+    'JWT_RESPONSE_PAYLOAD_HANDLER': 'vault.utils.my_jwt_response_handler'
 }
 
 # Password validation
