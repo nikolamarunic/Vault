@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'corsheaders',
     'rest_framework',
+    'knox',
+    'accounts.apps.AccountsConfig',  # Accounts
     'vault'  # Vault app
 ]
 
@@ -83,12 +85,13 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
-# Rest framework
 
+# Rest framework uses knox auth
 REST_FRAMEWORK = {
-'DEFAULT_AUTHENTICATION_CLASSES': (
-    'rest_framework.authentication.SessionAuthentication',
-),
+    'DEFAULT_AUTHENTICATION_CLASSES': ( 
+            'knox.auth.TokenAuthentication',
+    ),
+    #  'DATETIME_FORMAT': "%m/%d/%Y %H:%M:%S",
 }
 
 # Password validation
