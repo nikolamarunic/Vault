@@ -7,7 +7,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      loggedIn: false,
+      token: "",
       modal: false,
       // viewCompleted: false,
       activeItem: {
@@ -18,6 +18,11 @@ class App extends Component {
       vaultItems: []
     };
     this.toggle = this.toggle.bind(this);
+    this.setToken = this.setToken.bind(this);
+  }
+
+  setToken(token){
+    this.setState( {token: token});
   }
 
   componentDidMount() {
@@ -102,7 +107,7 @@ class App extends Component {
   };
 
   render() {
-    if (this.state.loggedIn) {
+    if (this.state.token) {
       return (
         <main className="content">
         <h1 className="text-white text-uppercase text-center my-4">Vault app</h1>
@@ -133,7 +138,7 @@ class App extends Component {
       );
     } else {
       return (
-        <LandingPage />
+        <LandingPage setToken = {this.setToken}/>
       );
     }
   }

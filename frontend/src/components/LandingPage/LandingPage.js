@@ -4,10 +4,10 @@ import { Navbar, Nav, Button, ButtonGroup } from "react-bootstrap";
 import LoginPage from '../LoginPage/LoginPage';
 import SignUpPage from '../SignUpPage/SignUpPage';
 
-export default function LandingPage() {
+export default function LandingPage(props) {
     const [isLogin, setLogin] = useState(true);
     // If it's a login want to show login page, else the sign up page
-    let form = isLogin ? <LoginPage /> : <SignUpPage />;
+    let form = isLogin ? <LoginPage setToken = {props.setToken}/> : <SignUpPage setToken = {props.setToken}/>;
 
     return (
         <div>
