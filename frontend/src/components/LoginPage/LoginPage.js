@@ -49,7 +49,10 @@ export default class LoginPage extends Component {
                 </Form.Group>
 
                 <Button variant="primary" type="submit">
-                    Submit
+                    Login
+                </Button>
+                <Button variant="primary" type="submit">
+                    Sign up
                 </Button>
             </Form>
         );
