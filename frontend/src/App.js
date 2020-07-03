@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import CustomModal from "./components/CustomModal";
+import CustomModal from "./components/CustomModal/CustomModal";
+import LoginPage from "./components/LoginPage/LoginPage";
 import axios from "axios";
 
 class App extends Component {
@@ -99,33 +100,36 @@ class App extends Component {
     ));
   };
   render() {
+    // return (
+    //   <main className="content">
+    //     <h1 className="text-white text-uppercase text-center my-4">Vault app</h1>
+    //     <div className="row ">
+    //       <div className="col-md-6 col-sm-10 mx-auto p-0">
+    //         <div className="card p-3">
+    //           <div className="">
+    //             <button onClick={this.createItem} className="btn btn-primary">
+    //               Add task
+    //                 </button>
+    //           </div>
+    //           {/* {this.renderTabList()} */}
+    //           <ul className="list-group list-group-flush">
+    //             {this.renderItems()}
+    //           </ul>
+    //         </div>
+    //       </div>
+    //     </div>
+    //     {this.state.modal ? (
+    //       <CustomModal
+    //         activeItem={this.state.activeItem}
+    //         toggle={this.toggle}
+    //         onSave={this.handleSubmit}
+    //         onHide={this.handleHide}
+    //       />
+    //     ) : null}
+    //   </main>
+    // );
     return (
-      <main className="content">
-        <h1 className="text-white text-uppercase text-center my-4">Vault app</h1>
-        <div className="row ">
-          <div className="col-md-6 col-sm-10 mx-auto p-0">
-            <div className="card p-3">
-              <div className="">
-                <button onClick={this.createItem} className="btn btn-primary">
-                  Add task
-                    </button>
-              </div>
-              {/* {this.renderTabList()} */}
-              <ul className="list-group list-group-flush">
-                {this.renderItems()}
-              </ul>
-            </div>
-          </div>
-        </div>
-        {this.state.modal ? (
-          <CustomModal
-            activeItem={this.state.activeItem}
-            toggle={this.toggle}
-            onSave={this.handleSubmit}
-            onHide={this.handleHide}
-          />
-        ) : null}
-      </main>
+      <LoginPage />
     );
   }
 }
