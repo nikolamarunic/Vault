@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import CustomModal from "./components/CustomModal/CustomModal";
-import LoginPage from "./components/LoginPage/LoginPage";
+import LandingPage from "./components/LandingPage/LandingPage";
 import axios from "axios";
 
 class App extends Component {
@@ -129,7 +129,7 @@ class App extends Component {
     //   </main>
     // );
     return (
-      <LoginPage />
+      <LandingPage />
     );
   }
 }
