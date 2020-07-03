@@ -7,6 +7,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      loggedIn: false,
       modal: false,
       // viewCompleted: false,
       activeItem: {
@@ -99,38 +100,42 @@ class App extends Component {
       </li>
     ));
   };
+
   render() {
-    // return (
-    //   <main className="content">
-    //     <h1 className="text-white text-uppercase text-center my-4">Vault app</h1>
-    //     <div className="row ">
-    //       <div className="col-md-6 col-sm-10 mx-auto p-0">
-    //         <div className="card p-3">
-    //           <div className="">
-    //             <button onClick={this.createItem} className="btn btn-primary">
-    //               Add task
-    //                 </button>
-    //           </div>
-    //           {/* {this.renderTabList()} */}
-    //           <ul className="list-group list-group-flush">
-    //             {this.renderItems()}
-    //           </ul>
-    //         </div>
-    //       </div>
-    //     </div>
-    //     {this.state.modal ? (
-    //       <CustomModal
-    //         activeItem={this.state.activeItem}
-    //         toggle={this.toggle}
-    //         onSave={this.handleSubmit}
-    //         onHide={this.handleHide}
-    //       />
-    //     ) : null}
-    //   </main>
-    // );
-    return (
-      <LandingPage />
-    );
+    if (this.state.loggedIn) {
+      return (
+        <main className="content">
+        <h1 className="text-white text-uppercase text-center my-4">Vault app</h1>
+        <div className="row ">
+          <div className="col-md-6 col-sm-10 mx-auto p-0">
+            <div className="card p-3">
+              <div className="">
+                <button onClick={this.createItem} className="btn btn-primary">
+                  Add task
+                      </button>
+              </div>
+              {/* {this.renderTabList()} */}
+              <ul className="list-group list-group-flush">
+                {this.renderItems()}
+              </ul>
+            </div>
+          </div>
+        </div>
+        {this.state.modal ? (
+          <CustomModal
+            activeItem={this.state.activeItem}
+            toggle={this.toggle}
+            onSave={this.handleSubmit}
+            onHide={this.handleHide}
+          />
+        ) : null}
+      </main>
+      );
+    } else {
+      return (
+        <LandingPage />
+      );
+    }
   }
 }
 export default App;
