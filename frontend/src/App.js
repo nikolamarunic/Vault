@@ -21,8 +21,8 @@ class App extends Component {
     this.setToken = this.setToken.bind(this);
   }
 
-  setToken(token){
-    this.setState( {token: token});
+  setToken(token) {
+    this.setState({ token: token });
   }
 
   componentDidMount() {
@@ -32,9 +32,29 @@ class App extends Component {
 
   refreshList = () => {
     axios
-      .get("http://localhost:8000/api/items/")
+      .get("http://localhost:8000/api/items/", {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization : `Token ${this.state.token}`
+        },
+      })
       .then(res => this.setState({ vaultItems: res.data }))
       .catch(err => console.log(err));
+
+
+    // const options = {
+    //   url: 'http://localhost:8000/api/items/',
+    //   method: 'POST',
+    //   headers: {
+    //     'Accept': 'application/json',
+    //     'Content-Type': 'application/json;charset=UTF-8',
+    //     'Token': this.state.token
+    //   },
+    // };
+    // axios(options)
+    //   .then(response => {
+    //     console.log(response);
+    //   });
   }
 
   toggle = () => {
@@ -110,35 +130,38 @@ class App extends Component {
     if (this.state.token) {
       return (
         <main className="content">
-        <h1 className="text-white text-uppercase text-center my-4">Vault app</h1>
-        <div className="row ">
-          <div className="col-md-6 col-sm-10 mx-auto p-0">
-            <div className="card p-3">
-              <div className="">
-                <button onClick={this.createItem} className="btn btn-primary">
-                  Add task
+          <h1 className="text-white text-uppercase text-center my-4">Vault app</h1>
+          <div className="row ">
+            <div className="col-md-6 col-sm-10 mx-auto p-0">
+              <div className="card p-3">
+                <div className="">
+                  <button onClick={this.createItem} className="btn btn-primary">
+                    Add task
                       </button>
+                  <button onClick={this.refreshList} className="btn btn-primary">
+                    refresh list
+                  </button>
+                </div>
+                {/* {this.renderTabList()} */}
+                <ul className="list-group list-group-flush">
+                  {this.renderItems()}
+                </ul>
               </div>
-              {/* {this.renderTabList()} */}
-              <ul className="list-group list-group-flush">
-                {this.renderItems()}
-              </ul>
             </div>
           </div>
-        </div>
-        {this.state.modal ? (
-          <CustomModal
-            activeItem={this.state.activeItem}
-            toggle={this.toggle}
-            onSave={this.handleSubmit}
-            onHide={this.handleHide}
-          />
-        ) : null}
-      </main>
+          {this.state.modal ? (
+            <CustomModal
+              activeItem={this.state.activeItem}
+              toggle={this.toggle}
+              onSave={this.handleSubmit}
+              onHide={this.handleHide}
+            />
+          ) : null}
+        </main>
       );
     } else {
       return (
-        <LandingPage setToken = {this.setToken}/>
+        <LandingPage setToken={this.setToken} />
       );
     }
   }

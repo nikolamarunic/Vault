@@ -8,7 +8,7 @@ const api = {
         await axios
             .post("http://localhost:8000/api/auth/login", data)
             .then(res => {
-                console.log(res.data.token);
+                console.log(res);
                 token = res.data.token;
             })
             .catch((e) => {
@@ -16,6 +16,13 @@ const api = {
                 token = "";
             });
         return token;
-    }
+    },
+
+    // refreshList = (token) => {
+    //     axios
+    //       .get("http://localhost:8000/api/items/", token)
+    //       .then(res => this.setState({ vaultItems: res.data }))
+    //       .catch(err => console.log(err));
+    //   }
 }
 export default api

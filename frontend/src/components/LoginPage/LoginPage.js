@@ -14,7 +14,8 @@ export default function Login(props) {
   async function handleSubmit(event) {
     event.preventDefault();
     let res = await api.handleLogin({ username: username, password: password });
-    console.log(res);
+    // console.log(res);
+    props.setToken(res);
   }
 
   return (
