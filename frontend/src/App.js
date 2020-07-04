@@ -24,6 +24,7 @@ class App extends Component {
 
   setToken(token) {
     this.setState({ token: token });
+    this.refreshList();
   }
 
   componentDidMount() {
