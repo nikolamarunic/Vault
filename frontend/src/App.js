@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import CustomModal from "./components/CustomModal/CustomModal";
 import LandingPage from "./components/LandingPage/LandingPage";
 import axios from "axios";
+import api from './util/api';
 
 class App extends Component {
   constructor(props) {
@@ -30,31 +31,11 @@ class App extends Component {
     this.refreshList();
   };
 
-  refreshList = () => {
-    axios
-      .get("http://localhost:8000/api/items/", {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization : `Token ${this.state.token}`
-        },
-      })
-      .then(res => this.setState({ vaultItems: res.data }))
-      .catch(err => console.log(err));
 
 
-    // const options = {
-    //   url: 'http://localhost:8000/api/items/',
-    //   method: 'POST',
-    //   headers: {
-    //     'Accept': 'application/json',
-    //     'Content-Type': 'application/json;charset=UTF-8',
-    //     'Token': this.state.token
-    //   },
-    // };
-    // axios(options)
-    //   .then(response => {
-    //     console.log(response);
-    //   });
+  refreshList = async() => {
+    let newList = await api.refreshList(this.state.token);
+    this.setState({ vaultItems: newList });
   }
 
   toggle = () => {
@@ -95,7 +76,8 @@ class App extends Component {
   }
 
   renderItems = () => {
-    const newItems = this.state.vaultItems
+    const newItems = this.state.vaultItems;
+    console.log(newItems);
 
     return newItems.map(item => (
       <li
