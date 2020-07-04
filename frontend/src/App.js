@@ -55,14 +55,12 @@ class App extends Component {
     //   .post("http://localhost:8000/api/items/", item)
     //   .then(res => this.refreshList());
 
-    
+
   };
 
   handleDelete = item => {
-    // alert("delete" + JSON.stringify(item));
-    axios
-      .delete(`http://localhost:8000/api/items/${item.id}`)
-      .then(res => this.refreshList());
+    api.handleDelete(item, this.state.token);
+    this.refreshList();
   };
 
   createItem = () => {

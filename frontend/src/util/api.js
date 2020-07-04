@@ -39,29 +39,43 @@ const api = {
     handleSubmit(item, token) {
         if (item.id) {
             axios
-            .put(`http://localhost:8000/api/items/${item.id}/`, item, {
-                headers: {
-                  'Content-Type': 'application/json',
-                  Authorization: `Token ${token}`
-                },
-              })
-              .then(res =>console.log('successfully put data'))
-              .catch(err => {
-                console.log(err);
-              });
-              return;
-          } 
-          axios
+                .put(`http://localhost:8000/api/items/${item.id}/`, item, {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Authorization: `Token ${token}`
+                    },
+                })
+                .then(res => console.log('successfully put data'))
+                .catch(err => {
+                    console.log(err);
+                });
+            return;
+        }
+        axios
             .post(`http://localhost:8000/api/items/${item.id}/`, item, {
                 headers: {
-                  'Content-Type': 'application/json',
-                  Authorization: `Token ${token}`
+                    'Content-Type': 'application/json',
+                    Authorization: `Token ${token}`
                 },
-              })
-              .then(res => console.log('successfully posted data'))
-              .catch(err => {
+            })
+            .then(res => console.log('successfully posted data'))
+            .catch(err => {
                 console.log(err);
-              });
+            });
+    },
+
+    handleDelete(item, token) {
+        axios
+            .delete(`http://localhost:8000/api/items/${item.id}/`, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Token ${token}`
+                },
+            })
+            .then(res => console.log('successfully deleted data'))
+            .catch(err => {
+                console.log(err);
+            });
     }
 
 }
