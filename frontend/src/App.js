@@ -31,9 +31,7 @@ class App extends Component {
     this.refreshList();
   };
 
-
-
-  refreshList = async() => {
+  refreshList = async () => {
     let newList = await api.refreshList(this.state.token);
     this.setState({ vaultItems: newList });
   }
@@ -44,15 +42,20 @@ class App extends Component {
 
   handleSubmit = item => {
     this.toggle();
-    if (item.id) { //If it is already existing want to UPDATE
-      axios
-        .put(`http://localhost:8000/api/items/${item.id}/`, item)
-        .then(res => this.refreshList());
-      return;
-    } //If doesn't exist want to CREATE
-    axios
-      .post("http://localhost:8000/api/items/", item)
-      .then(res => this.refreshList());
+    api.handleSubmit(item, this.state.token);
+    this.refreshList();
+
+    // if (item.id) { //If it is already existing want to UPDATE
+    //   axios
+    //     .put(`http://localhost:8000/api/items/${item.id}/`, item)
+    //     .then(res => this.refreshList());
+    //   return;
+    // } //If doesn't exist want to CREATE
+    // axios
+    //   .post("http://localhost:8000/api/items/", item)
+    //   .then(res => this.refreshList());
+
+    
   };
 
   handleDelete = item => {
@@ -77,7 +80,6 @@ class App extends Component {
 
   renderItems = () => {
     const newItems = this.state.vaultItems;
-    console.log(newItems);
 
     return newItems.map(item => (
       <li

@@ -32,9 +32,37 @@ const api = {
                 console.log(err);
                 data = [];
             });
-        console.log(data);
+        // console.log(data);
         return data ? data : []; //Return empty array if nothing found.
-        
+    },
+
+    handleSubmit(item, token) {
+        if (item.id) {
+            axios
+            .put(`http://localhost:8000/api/items/${item.id}/`, item, {
+                headers: {
+                  'Content-Type': 'application/json',
+                  Authorization: `Token ${token}`
+                },
+              })
+              .then(res =>console.log('successfully put data'))
+              .catch(err => {
+                console.log(err);
+              });
+              return;
+          } 
+          axios
+            .post(`http://localhost:8000/api/items/${item.id}/`, item, {
+                headers: {
+                  'Content-Type': 'application/json',
+                  Authorization: `Token ${token}`
+                },
+              })
+              .then(res => console.log('successfully posted data'))
+              .catch(err => {
+                console.log(err);
+              });
     }
+
 }
 export default api
