@@ -45,22 +45,10 @@ class App extends Component {
     this.toggle();
     api.handleSubmit(item, this.state.token);
     this.refreshList();
-
-    // if (item.id) { //If it is already existing want to UPDATE
-    //   axios
-    //     .put(`http://localhost:8000/api/items/${item.id}/`, item)
-    //     .then(res => this.refreshList());
-    //   return;
-    // } //If doesn't exist want to CREATE
-    // axios
-    //   .post("http://localhost:8000/api/items/", item)
-    //   .then(res => this.refreshList());
-
-
   };
 
-  handleDelete = item => {
-    api.handleDelete(item, this.state.token);
+  handleDelete = async(item) => {
+    await api.handleDelete(item, this.state.token);
     this.refreshList();
   };
 
@@ -119,11 +107,11 @@ class App extends Component {
               <div className="card p-3">
                 <div className="">
                   <button onClick={this.createItem} className="btn btn-primary">
-                    Add task
+                    Add item
                       </button>
-                  <button onClick={this.refreshList} className="btn btn-primary">
+                  {/* <button onClick={this.refreshList} className="btn btn-primary">
                     refresh list
-                  </button>
+                  </button> */}
                 </div>
                 {/* {this.renderTabList()} */}
                 <ul className="list-group list-group-flush">

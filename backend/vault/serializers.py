@@ -5,4 +5,4 @@ from .models import Item
 class VaultSerializer(serializers.ModelSerializer):
     class Meta:
         model = Item
-        fields = ('id', 'name', 'description')
+        fields = ('id', 'name', 'description',)

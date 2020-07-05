@@ -37,7 +37,7 @@ const api = {
     },
 
     handleSubmit(item, token) {
-        if (item.id) {
+        if (item.id) {//If it has an ID then want to UPDATE
             axios
                 .put(`http://localhost:8000/api/items/${item.id}/`, item, {
                     headers: {
@@ -51,8 +51,10 @@ const api = {
                 });
             return;
         }
+        //else want to CREATE
+        //URL used to be http://localhost:8000/api/items/${item.id}` but didnt work?
         axios
-            .post(`http://localhost:8000/api/items/${item.id}/`, item, {
+            .post(`http://localhost:8000/api/items/`, item, {
                 headers: {
                     'Content-Type': 'application/json',
                     Authorization: `Token ${token}`
@@ -64,8 +66,8 @@ const api = {
             });
     },
 
-    handleDelete(item, token) {
-        axios
+    async handleDelete(item, token) {
+        await axios
             .delete(`http://localhost:8000/api/items/${item.id}/`, {
                 headers: {
                     'Content-Type': 'application/json',
