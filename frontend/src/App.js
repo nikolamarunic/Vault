@@ -7,6 +7,7 @@ import {
   Form,
   Button,
   FormControl,
+  Nav, Navbar
 } from 'react-bootstrap';
 
 class App extends Component {
@@ -106,23 +107,27 @@ class App extends Component {
     if (this.state.token) {
       return (
         <main className="content">
-          <h1 className="text-white text-uppercase text-center my-4">Vault app</h1>
+          <h1 className="text-black text-uppercase text-center my-4">Vault app</h1>
           <div className="row ">
             <div className="col-md-6 col-sm-10 mx-auto p-0">
               <div className="card p-3">
-                <div className="">
-                  <Form inline>
+                <div>
+                  <Navbar bg="light" expand="lg">
                     <Button onClick={this.createItem} className="btn btn-primary">
-                      Add item
+                      Add an item
                     </Button>
-                    <div className='searchItems'>
-                      <FormControl type="text" placeholder="Search for an item" className="mr-sm-2" />
-                      <Button variant="outline-success">Search</Button>
-                    </div>
-                  </Form>
-                  {/* <button onClick={this.refreshList} className="btn btn-primary">
-                    refresh list
-                  </button> */}
+                    <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                    <Navbar.Collapse id="basic-navbar-nav">
+                      <Nav className="mr-auto">
+                        <Nav.Link href="#"></Nav.Link>
+                        <Nav.Link href="#"></Nav.Link>
+                      </Nav>
+                      <Form inline>
+                        <FormControl type="text" placeholder="Search" className="mr-sm-2" />
+                      </Form>
+                    </Navbar.Collapse>
+                  </Navbar>
+                  
                 </div>
                 {/* {this.renderTabList()} */}
                 <ul className="list-group list-group-flush">
