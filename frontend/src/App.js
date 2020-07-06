@@ -107,7 +107,7 @@ class App extends Component {
     if (this.state.token) {
       return (
         <main className="content">
-          <h1 className="text-black text-uppercase text-center my-4">Vault app</h1>
+          <h1 className="text-black text-uppercase text-center my-4">Your Vault</h1>
           <div className="row ">
             <div className="col-md-6 col-sm-10 mx-auto p-0">
               <div className="card p-3">
@@ -127,9 +127,7 @@ class App extends Component {
                       </Form>
                     </Navbar.Collapse>
                   </Navbar>
-                  
                 </div>
-                {/* {this.renderTabList()} */}
                 <ul className="list-group list-group-flush">
                   {this.renderItems()}
                 </ul>
