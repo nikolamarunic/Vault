@@ -15,6 +15,7 @@ class App extends Component {
     super(props);
     this.state = {
       token: "",
+      searchQuery: "",
       modal: false,
       // viewCompleted: false,
       activeItem: {
@@ -22,7 +23,8 @@ class App extends Component {
         description: "",
         // completed: false
       },
-      vaultItems: []
+      vaultItems: [], //vaultItems represents the items on display
+      totalItems: []  //totalItems represents all the items read from the database (necessary for searching/filtering)
     };
     this.toggle = this.toggle.bind(this);
     this.setToken = this.setToken.bind(this);
@@ -40,7 +42,7 @@ class App extends Component {
 
   refreshList = async () => {
     let newList = await api.refreshList(this.state.token);
-    this.setState({ vaultItems: newList });
+    this.setState({ vaultItems: newList, allItems: newList });
   }
 
   toggle = () => {
@@ -56,6 +58,18 @@ class App extends Component {
   handleDelete = async (item) => {
     await api.handleDelete(item, this.state.token);
     this.refreshList();
+  };
+
+  handleSearch = async () => {
+    //If the query is empty it is just a simple get request
+    if (this.state.searchQuery !== ""){
+      const query = this.state.searchQuery;
+      let items = this.state.allItems
+      items = items.filter(currItem => currItem.name.toLowerCase().includes(query.toLowerCase()) || currItem.description.toLowerCase().includes(query.toLowerCase()));
+      this.setState({vaultItems : items});
+    } else {
+      this.refreshList();
+    }    
   };
 
   createItem = () => {
@@ -123,7 +137,14 @@ class App extends Component {
                         <Nav.Link href="#"></Nav.Link>
                       </Nav>
                       <Form inline>
-                        <FormControl type="text" placeholder="Search" className="mr-sm-2" />
+                        <FormControl type="text" placeholder="Search for an item" className="mr-sm-2" 
+                        controlId="searchQuery"
+                        value={this.state.searchQuery}
+                        onChange={async(e) => {
+                          //The await is required! otherwise clearing the search bar wont refresh the items.
+                          await this.setState({searchQuery: e.target.value});
+                          this.handleSearch();
+                        }}/>
                       </Form>
                     </Navbar.Collapse>
                   </Navbar>
