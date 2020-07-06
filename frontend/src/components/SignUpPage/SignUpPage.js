@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { Button, FormGroup, FormControl, Form } from "react-bootstrap";
 import "./SignUpPage.css";
+import api from '../../util/api';
 
-export default function Login() {
+
+export default function SignUp(props) {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -13,8 +15,10 @@ export default function Login() {
     return email.length > 0 && password.length > 0 && password === confirmPassword && username.length > 0;
   }
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
+    let res = await api.handleSignUp({ username: username, password: password, email: email });
+    props.setToken(res);
   }
 
   return (

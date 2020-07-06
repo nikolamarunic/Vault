@@ -1,8 +1,13 @@
 import React, { Component } from "react";
 import CustomModal from "./components/CustomModal/CustomModal";
 import LandingPage from "./components/LandingPage/LandingPage";
-import axios from "axios";
 import api from './util/api';
+
+import {
+  Form,
+  Button,
+  FormControl,
+} from 'react-bootstrap';
 
 class App extends Component {
   constructor(props) {
@@ -41,13 +46,13 @@ class App extends Component {
     this.setState({ modal: !this.state.modal });
   };
 
-  handleSubmit = item => {
+  handleSubmit = async (item) => {
     this.toggle();
-    api.handleSubmit(item, this.state.token);
+    await api.handleSubmit(item, this.state.token);
     this.refreshList();
   };
 
-  handleDelete = async(item) => {
+  handleDelete = async (item) => {
     await api.handleDelete(item, this.state.token);
     this.refreshList();
   };
@@ -108,7 +113,16 @@ class App extends Component {
                 <div className="">
                   <button onClick={this.createItem} className="btn btn-primary">
                     Add item
-                      </button>
+                  </button>
+                  {/* <Form inline>
+                    <button onClick={this.createItem} className="btn btn-primary">
+                      Add item
+                    </button>
+                    <div className='searchItems'>
+                      <FormControl type="text" placeholder="Search for an item" className="mr-sm-2" />
+                      <Button variant="outline-success">Search</Button>
+                    </div>
+                  </Form> */}
                   {/* <button onClick={this.refreshList} className="btn btn-primary">
                     refresh list
                   </button> */}

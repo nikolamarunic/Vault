@@ -17,6 +17,21 @@ const api = {
             });
         return token;
     },
+    async handleSignUp(data) {
+        // console.log(data);
+        let token;
+        await axios
+            .post("http://localhost:8000/api/auth/register", data)
+            .then(res => {
+                // console.log(res);
+                token = res.data.token;
+            })
+            .catch((e) => {
+                console.log('an error occurred')
+                token = "";
+            });
+        return token;
+    },
 
     async refreshList(token) {
         let data;
@@ -36,9 +51,9 @@ const api = {
         return data ? data : []; //Return empty array if nothing found.
     },
 
-    handleSubmit(item, token) {
+    async handleSubmit(item, token) {
         if (item.id) {//If it has an ID then want to UPDATE
-            axios
+            await axios
                 .put(`http://localhost:8000/api/items/${item.id}/`, item, {
                     headers: {
                         'Content-Type': 'application/json',
@@ -53,7 +68,7 @@ const api = {
         }
         //else want to CREATE
         //URL used to be http://localhost:8000/api/items/${item.id}` but didnt work?
-        axios
+        await axios
             .post(`http://localhost:8000/api/items/`, item, {
                 headers: {
                     'Content-Type': 'application/json',
