@@ -7,9 +7,6 @@
   pointer-events: none;
 }
 
-.searchItems{
-  align-items: left;
-}
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {

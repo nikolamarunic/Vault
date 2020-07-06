@@ -111,18 +111,15 @@ class App extends Component {
             <div className="col-md-6 col-sm-10 mx-auto p-0">
               <div className="card p-3">
                 <div className="">
-                  <button onClick={this.createItem} className="btn btn-primary">
-                    Add item
-                  </button>
-                  {/* <Form inline>
-                    <button onClick={this.createItem} className="btn btn-primary">
+                  <Form inline>
+                    <Button onClick={this.createItem} className="btn btn-primary">
                       Add item
-                    </button>
+                    </Button>
                     <div className='searchItems'>
                       <FormControl type="text" placeholder="Search for an item" className="mr-sm-2" />
                       <Button variant="outline-success">Search</Button>
                     </div>
-                  </Form> */}
+                  </Form>
                   {/* <button onClick={this.refreshList} className="btn btn-primary">
                     refresh list
                   </button> */}
