@@ -6,7 +6,7 @@ const api = {
         // console.log(data);
         let token;
         await axios
-            .post("http://localhost:8000/api/auth/login", data)
+            .post("/api/auth/login", data)
             .then(res => {
                 // console.log(res);
                 token = res.data.token;
@@ -21,7 +21,7 @@ const api = {
         // console.log(data);
         let token;
         await axios
-            .post("http://localhost:8000/api/auth/register", data)
+            .post("/api/auth/register", data)
             .then(res => {
                 // console.log(res);
                 token = res.data.token;
@@ -36,7 +36,7 @@ const api = {
     async refreshList(token) {
         let data;
         await axios
-            .get("http://localhost:8000/api/items/", {
+            .get("/api/items/", {
                 headers: {
                     'Content-Type': 'application/json',
                     Authorization: `Token ${token}`
@@ -54,7 +54,7 @@ const api = {
     async handleSubmit(item, token) {
         if (item.id) {//If it has an ID then want to UPDATE
             await axios
-                .put(`http://localhost:8000/api/items/${item.id}/`, item, {
+                .put(`/api/items/${item.id}/`, item, {
                     headers: {
                         'Content-Type': 'application/json',
                         Authorization: `Token ${token}`
@@ -69,7 +69,7 @@ const api = {
         //else want to CREATE
         //URL used to be http://localhost:8000/api/items/${item.id}` but didnt work?
         await axios
-            .post(`http://localhost:8000/api/items/`, item, {
+            .post(`/api/items/`, item, {
                 headers: {
                     'Content-Type': 'application/json',
                     Authorization: `Token ${token}`
@@ -83,7 +83,7 @@ const api = {
 
     async handleDelete(item, token) {
         await axios
-            .delete(`http://localhost:8000/api/items/${item.id}/`, {
+            .delete(`/api/items/${item.id}/`, {
                 headers: {
                     'Content-Type': 'application/json',
                     Authorization: `Token ${token}`
