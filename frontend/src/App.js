@@ -125,8 +125,9 @@ class App extends Component {
     if (this.state.token) { //If authenticated will show the user's items/etc
       return (
         <main className="content">
+          {/* The Upper nav bar */}
           <Navbar bg="dark" expand="lg">
-            <Navbar.Brand href="#home" style={{ color: "white" }}>Welcome to Vault</Navbar.Brand>
+          <Navbar.Brand href="#home" style={{ color: "white" }}>Welcome to Vault</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="mr-auto">
@@ -134,6 +135,8 @@ class App extends Component {
               </Nav>
             </Navbar.Collapse>
           </Navbar>
+
+          {/* The inventory system */}
           <h1 className="text-black text-uppercase text-center my-4">Your Vault</h1>
           <div className="row ">
             <div className="col-md-6 col-sm-10 mx-auto p-0">
