@@ -62,14 +62,14 @@ class App extends Component {
 
   handleSearch = async () => {
     //If the query is empty it is just a simple get request
-    if (this.state.searchQuery !== ""){
+    if (this.state.searchQuery !== "") {
       const query = this.state.searchQuery;
       let items = this.state.allItems
       items = items.filter(currItem => currItem.name.toLowerCase().includes(query.toLowerCase()) || currItem.description.toLowerCase().includes(query.toLowerCase()));
-      this.setState({vaultItems : items});
+      this.setState({ vaultItems: items });
     } else {
       this.refreshList();
-    }    
+    }
   };
 
   createItem = () => {
@@ -118,7 +118,7 @@ class App extends Component {
   };
 
   render() {
-    if (this.state.token) {
+    if (this.state.token) { //If authenticated will show the user's items/etc
       return (
         <main className="content">
           <h1 className="text-black text-uppercase text-center my-4">Your Vault</h1>
@@ -137,14 +137,14 @@ class App extends Component {
                         <Nav.Link href="#"></Nav.Link>
                       </Nav>
                       <Form inline>
-                        <FormControl type="text" placeholder="Search for an item" className="mr-sm-2" 
-                        controlId="searchQuery"
-                        value={this.state.searchQuery}
-                        onChange={async(e) => {
-                          //The await is required! otherwise clearing the search bar wont refresh the items.
-                          await this.setState({searchQuery: e.target.value});
-                          this.handleSearch();
-                        }}/>
+                        <FormControl type="text" placeholder="Search for an item" className="mr-sm-2"
+                          controlId="searchQuery"
+                          value={this.state.searchQuery}
+                          onChange={async (e) => {
+                            //The await is required! otherwise clearing the search bar wont refresh the items.
+                            await this.setState({ searchQuery: e.target.value });
+                            this.handleSearch();
+                          }} />
                       </Form>
                     </Navbar.Collapse>
                   </Navbar>
@@ -165,9 +165,11 @@ class App extends Component {
           ) : null}
         </main>
       );
-    } else {
+    } else { //Not authenticated - see the landing page
       return (
-        <LandingPage setToken={this.setToken} />
+        <div className="landingPage">
+          <LandingPage setToken={this.setToken} />
+        </div>
       );
     }
   }

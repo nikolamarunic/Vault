@@ -18,7 +18,7 @@ export default function Login(props) {
   }
 
   return (
-    <div className="Login">
+    <div className="Login" >
       <form onSubmit={handleSubmit}>
         <FormGroup controlId="username" bsSize="large">
           <Form.Label>Username</Form.Label>
