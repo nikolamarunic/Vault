@@ -3,7 +3,7 @@ import axios from "axios";
 const api = {
 
     async handleLogin(data) {
-        console.log(data);
+        // console.log(data);
         let token;
         await axios
             .post("http://localhost:8000/api/auth/login", data)
