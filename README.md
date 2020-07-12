@@ -2,7 +2,7 @@
 
 A web app for remembering where you put the important stuff.
 
-The app was made with **React** and **Bootstrap** in the frontend, and **Django** for the backend with an **SQLite** database. 
+The app was made with **React** and **Bootstrap** in the frontend, and **Django** for the backend with an **SQLite** database. The app also makes use of **Docker** to make deployment easier/to make it easier for you to run it on your machine!
 
 ![Image of Vault](https://github.com/nikolamarunic/images/blob/master/vault./vault_splash.png)
 
