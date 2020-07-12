@@ -33,6 +33,11 @@ Users must create an account and all info is saved to an SQLite database in the 
   <img src = https://media.giphy.com/media/Lr3T1Jodi30SytitTm/giphy.gif>
 </p>
 
+# Running it locally
+1. Clone the repository locally with git clone
+2. Make sure docker is installed (see [here](https://docs.docker.com/get-docker/))
+3. Navigate to the repository (cd /your_path/vault)
+4. Run 'docker-compose up' and check out the app at http://localhost:3000/!
 
 # LICENSE
 MIT
